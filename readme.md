@@ -1,3 +1,3 @@
 # Fantasy Team 18
 
-Hello world!
+Simulate seasons, draft new players, win Championships!
