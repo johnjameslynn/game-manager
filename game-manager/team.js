@@ -1,10 +1,12 @@
 class Team {
 
-  constructor (city, name, color) {
+  constructor (city, name, color, division, conference) {
 
     this.city = city;
     this.name = name;
     this.teamColor = color;
+    this.division = division;
+    this.conference = conference;
 
     this.po;
     this.ro;
