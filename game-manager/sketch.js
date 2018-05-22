@@ -3,8 +3,8 @@ var bPO, bRO, bPD, bRD, bST;
 var winner;
 var positions = ["QB", "RB", "WR", "TE", "OL", "DL", "LB", "DB", "K", "P"];
 var teams = [];
-var conferences = ['American League', 'National League'];
-var divisions = ['North', 'South', 'East', 'West'];
+var conferences = [];
+var divisions = [];
 var posNumberRange = {
   'QB' : [[1, 19]],
   'RB' : [[20, 49]],
@@ -26,19 +26,81 @@ function setup() {
 
   textSize(15);
 
+  conferences.push(new Conference('American League', 'american-league'));
+  conferences.push(new Conference('National League', 'national-league'));
+
+  divisions.push(new Division('North', 'north'));
+  divisions.push(new Division('South', 'south'));
+  divisions.push(new Division('East', 'east'));
+  divisions.push(new Division('West', 'west'));
+
+  var teamListing = document.getElementById('team-listing');
+
+  let conferenceFragment = document.createDocumentFragment();
+
   for(let i=0; i<conferences.length; i++){
+
+    let conferenceName = document.createElement('h3');
+    conferenceName.innerHTML = conferences[i].name;
+
+    let conferenceEl = document.createElement('div');
+    conferenceEl.classList.add('conference');
+    conferenceEl.classList.add('conference-' + conferences[i].slug);
+    
+    conferenceFragment.appendChild(conferenceName);
+    conferenceFragment.appendChild(conferenceEl);
+
+    let divisionEl;
+    let divisionFragment = document.createDocumentFragment();
+
     for(let j=0; j<divisions.length; j++){
+
+      let divisionName = document.createElement('h4');
+      divisionName.innerHTML = divisions[j].name;
+
+      let divisionEl = document.createElement('div');
+      divisionEl.classList.add('division');
+      divisionEl.classList.add('division-' + divisions[j].slug);
+      divisionEl.classList.add('division-' + conferences[i].slug);
+      divisionEl.appendChild(divisionName);
+
+      divisionFragment.appendChild(divisionEl);
+
+      let teamList = document.createElement('ul');
+      divisionEl.appendChild(teamList);
+
+      let teamEl;
+      let teamFragment = document.createDocumentFragment();
+
       for(let k=0; k<4; k++){
         let city = floor(random(cities.length));
         let name = floor(random(names.length));
         let teamColor = color(random(255), random(255), random(255));
-        //console.log(cities[city] + " " + names[name]);
-        teams.push(new Team(cities[city], names[name], teamColor, j, i));
+        let team = new Team(cities[city], names[name], teamColor, j, i);
+
+        teams.push(team);
         cities.splice(city, 1);
         names.splice(name, 1);
-      }  
+
+        teamEl = document.createElement('li');
+        teamEl.innerText = team.city + ' ' + team.name;
+
+        teamFragment.appendChild(teamEl);
+        teamList.appendChild(teamFragment);
+        divisionEl.appendChild(teamList);
+
+      }
+
+      divisionFragment.appendChild(teamFragment);
+      conferenceEl.appendChild(divisionFragment);
+
     }
+
+    conferenceFragment.appendChild(divisionFragment);
+
   }
+
+  teamListing.appendChild(conferenceFragment);
 
   // teams.push(new Team("Really Good", "Team"));
   // teams.push(new Team("Really Bad", "Team"));
@@ -59,7 +121,7 @@ function setup() {
   // teams[3].rd = 0;
   // teams[3].st = 0;
 
-  console.table(teams, ["city", "name", "conference", "division", "po", "ro", "pd", "rd", "st", "overall"]);
+  // console.table(teams, ["city", "name", "conference", "division", "po", "ro", "pd", "rd", "st", "overall"]);
 
   // button = createButton('Start Game');
   // button.position(0, 65);

@@ -19,17 +19,16 @@
       text-transform: uppercase;
     }
 
-    .divisions{
+    .conference{
       display: flex;
-      justify-content: justify-left;
     }
-    .division-listing{
-      margin-right: 2rem;
+    .division{
+      width: 25%;
     }
-    .division-listing h4{
+    .division h4{
       margin: 0;
     }
-    .division-listing ul {
+    .division ul {
       margin: 0;
       padding: 0;
       list-style: none;
@@ -39,6 +38,7 @@
   <script src="../taffy-min.js"></script>
   <script src="../addons/p5.dom.min.js"></script>
   <script src="../addons/p5.sound.min.js"></script>
+  <script src="league.js"></script>
   <script src="names.js"></script>
   <script src="coach.js"></script>
   <script src="player.js"></script>
@@ -55,10 +55,10 @@
     <h2>2018 Season</h2>
   </header>
 
-  <div class="conferences">
-    <h3>American League</h3>
-    <div class="divisions">
-      <div class="division-listing">
+  <div id="team-listing">
+    <!-- <h3>American League</h3>
+    <div class="conference">
+      <div class="division">
         <h4>North</h4>
         <ul>
           <li>Team A</li>
@@ -67,34 +67,7 @@
           <li>Team D</li>
         </ul>
       </div>
-      <div class="division-listing">
-        <h4>South</h4>
-        <ul>
-          <li>Team A</li>
-          <li>Team B</li>
-          <li>Team C</li>
-          <li>Team D</li>
-        </ul>
-      </div>
-      <div class="division-listing">
-        <h4>East</h4>
-        <ul>
-          <li>Team A</li>
-          <li>Team B</li>
-          <li>Team C</li>
-          <li>Team D</li>
-        </ul>
-      </div>
-      <div class="division-listing">
-        <h4>West</h4>
-        <ul>
-          <li>Team A</li>
-          <li>Team B</li>
-          <li>Team C</li>
-          <li>Team D</li>
-        </ul>
-      </div>
-    </div>
+    </div> -->
   </div>
 
 
