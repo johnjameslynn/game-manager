@@ -42,11 +42,12 @@ function setup() {
 
     let conferenceName = document.createElement('h3');
     conferenceName.innerHTML = conferences[i].name;
+    conferenceName.classList.add('conference-' + conferences[i].slug);
 
     let conferenceEl = document.createElement('div');
     conferenceEl.classList.add('conference');
     conferenceEl.classList.add('conference-' + conferences[i].slug);
-    
+
     conferenceFragment.appendChild(conferenceName);
     conferenceFragment.appendChild(conferenceEl);
 
@@ -78,12 +79,17 @@ function setup() {
         let teamColor = color(random(255), random(255), random(255));
         let team = new Team(cities[city], names[name], teamColor, j, i);
 
+        let teamIcon = document.createElement('div');
+        teamIcon.classList.add('team-icon');
+        teamIcon.style.backgroundColor = team.teamColor;
+
         teams.push(team);
         cities.splice(city, 1);
         names.splice(name, 1);
 
         teamEl = document.createElement('li');
-        teamEl.innerText = team.city + ' ' + team.name;
+        teamEl.appendChild(teamIcon);
+        teamEl.appendChild(document.createTextNode(team.city + ' ' + team.name));
 
         teamFragment.appendChild(teamEl);
         teamList.appendChild(teamFragment);
