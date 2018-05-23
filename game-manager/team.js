@@ -8,6 +8,21 @@ class Team {
     this.division = division;
     this.conference = conference;
 
+    // This is a temp variable hopefully
+
+    this.rank = [];
+
+    this.record = [];
+
+    /*
+    this.record = [
+      {
+        "Year" : 2018,
+        "Record" : [8, 8, 0],
+      }
+    ];
+    */
+
     this.po;
     this.ro;
     this.pd;

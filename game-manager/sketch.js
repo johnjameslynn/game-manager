@@ -73,11 +73,16 @@ function setup() {
       let teamEl;
       let teamFragment = document.createDocumentFragment();
 
+      let ranks = [1, 2, 3, 4];
+
       for(let k=0; k<4; k++){
         let city = floor(random(cities.length));
         let name = floor(random(names.length));
         let teamColor = floor(random(colors.length));
         let team = new Team(cities[city], names[name], colors[teamColor], j, i);
+
+        let teamRank = floor(random(ranks.length));
+        team.rank.push(teamRank);
 
         let teamIcon = document.createElement('div');
         teamIcon.classList.add('team-icon');
@@ -88,6 +93,7 @@ function setup() {
         cities.splice(city, 1);
         names.splice(name, 1);
         colors.splice(teamColor, 1);
+        ranks.splice(teamRank, 1);
 
         teamEl = document.createElement('li');
         teamEl.appendChild(teamIcon);
@@ -136,6 +142,9 @@ function setup() {
   // button.mousePressed(startGame);
 
   field = new Field(1, color(0, 75, 0));
+  schedule = new Schedule(teams, divisions, conferences);
+
+  schedule.generateSchedule();
 
 }
 
