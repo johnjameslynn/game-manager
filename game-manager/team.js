@@ -4,7 +4,7 @@ class Team {
 
     this.city = city;
     this.name = name;
-    this.teamColor = color;
+    this.color = color;
     this.division = division;
     this.conference = conference;
 

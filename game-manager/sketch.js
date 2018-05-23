@@ -76,16 +76,18 @@ function setup() {
       for(let k=0; k<4; k++){
         let city = floor(random(cities.length));
         let name = floor(random(names.length));
-        let teamColor = color(random(255), random(255), random(255));
-        let team = new Team(cities[city], names[name], teamColor, j, i);
+        let teamColor = floor(random(colors.length));
+        let team = new Team(cities[city], names[name], colors[teamColor], j, i);
 
         let teamIcon = document.createElement('div');
         teamIcon.classList.add('team-icon');
-        teamIcon.style.backgroundColor = team.teamColor;
+        teamIcon.style.borderTopColor = color(team.color["primary"][0], team.color["primary"][1], team.color["primary"][2]);
+        teamIcon.style.borderBottomColor = color(team.color["secondary"][0], team.color["secondary"][1], team.color["secondary"][2]);
 
         teams.push(team);
         cities.splice(city, 1);
         names.splice(name, 1);
+        colors.splice(teamColor, 1);
 
         teamEl = document.createElement('li');
         teamEl.appendChild(teamIcon);
